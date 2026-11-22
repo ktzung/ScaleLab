@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="ScaleLab — khóa học thiết kế hệ thống tương tác bằng tiếng Việt. Học qua sơ đồ sống, phòng lab mô phỏng traffic, luyện tập tình huống và cheatsheets.">
+  <meta name="theme-color" content="#0c1624">
+  <title>ScaleLab — Thiết kế hệ thống, nhìn thấy từng bước</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body data-theme="light" data-view="home">
+  <a class="skip-link" href="#view">Bỏ qua điều hướng</a>
+
+  <header class="topbar">
+    <a class="brand" href="#/" aria-label="ScaleLab — về trang chủ">
+      <span class="brand-mark" aria-hidden="true">
+        <svg viewBox="0 0 40 40" fill="none">
+          <rect x="4" y="20" width="9" height="16" rx="2.5" fill="currentColor" opacity=".55"/>
+          <rect x="15.5" y="10" width="9" height="26" rx="2.5" fill="currentColor" opacity=".8"/>
+          <rect x="27" y="4" width="9" height="32" rx="2.5" fill="currentColor"/>
+          <path d="M8.5 15.5 20 6l11.5 7.5" stroke="#0c1624" stroke-width="2" stroke-linecap="round" opacity=".55"/>
+        </svg>
+      </span>
+      <span class="brand-word">
+        <span class="brand-name">Scale<span>Lab</span></span>
+        <span class="brand-sub">THIẾT KẾ HỆ THỐNG</span>
+      </span>
+    </a>
+
+    <nav class="mode-nav" aria-label="Chế độ học">
+      <a class="mode-link" href="#/learn" data-mode="learn">
+        <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M3 4.5h5.5A2.5 2.5 0 0 1 11 7v9a2.5 2.5 0 0 0-2.5-2H3zM17 4.5h-3.5A2.5 2.5 0 0 0 11 7v9a2.5 2.5 0 0 1 2.5-2H17z"/></svg>
+        Học
+      </a>
+      <a class="mode-link" href="#/practice" data-mode="practice">
+        <svg viewBox="0 0 20 20" aria-hidden="true"><path d="m10 2 2.4 4.9 5.4.8-3.9 3.8.9 5.4-4.8-2.5-4.8 2.5.9-5.4L2.2 7.7l5.4-.8z"/></svg>
+        Luyện tập
+      </a>
+      <a class="mode-link" href="#/lab" data-mode="lab">
+        <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M8 2v5.2L3.4 15a2 2 0 0 0 1.7 3h9.8a2 2 0 0 0 1.7-3L12 7.2V2M6 2h8M6.5 11h7"/></svg>
+        Design Lab
+      </a>
+      <a class="mode-link" href="#/cheatsheets" data-mode="cheatsheets">
+        <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M5 2.5h8a2 2 0 0 1 2 2v13H5a2 2 0 0 1-2-2v-11a2 2 0 0 1 2-2Zm3 4h4M8 10h4M8 13.5h2.5"/></svg>
+        Cheatsheets
+      </a>
+    </nav>
+
+    <div class="top-actions">
+      <button class="search-trigger" id="searchBtn" type="button" aria-label="Tìm kiếm bài học">
+        <svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="9" cy="9" r="5.5"/><path d="m13.2 13.2 3.8 3.8"/></svg>
+        <span class="search-trigger-text">Tìm bài học, khái niệm…</span>
+        <kbd>⌘K</kbd>
+      </button>
+      <button class="icon-btn" id="themeBtn" type="button" aria-label="Chuyển giao diện sáng/tối" title="Chuyển giao diện">
+        <svg class="icon-sun" viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="3.6"/><path d="M10 1.5v2M10 16.5v2M1.5 10h2M16.5 10h2M4 4l1.4 1.4M14.6 14.6 16 16M16 4l-1.4 1.4M5.4 14.6 4 16"/></svg>
+        <svg class="icon-moon" viewBox="0 0 20 20" aria-hidden="true"><path d="M16.5 12.7A7 7 0 0 1 7.3 3.5 7 7 0 1 0 16.5 12.7Z"/></svg>
+      </button>
+      <a class="progress-chip" href="#/learn" aria-label="Tiến độ khóa học">
+        <span class="progress-ring" id="progressRing" aria-hidden="true"><svg viewBox="0 0 36 36"><circle class="ring-bg" cx="18" cy="18" r="14.5"/><circle class="ring-fill" id="ringFill" cx="18" cy="18" r="14.5"/></svg></span>
+        <span id="globalProgressText">0/10</span>
+      </a>
+      <button class="icon-btn menu-btn" id="menuBtn" type="button" aria-label="Mở danh sách bài học" aria-expanded="false">
+        <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M3 5h14M3 10h14M3 15h14"/></svg>
+      </button>
+    </div>
+  </header>
+
+  <div class="app-shell">
+    <div class="scrim" id="sidebarScrim" hidden></div>
+    <aside class="sidebar" id="sidebar" aria-label="Danh sách bài học">
+      <div class="sidebar-top">
+        <div class="sidebar-kicker">LỘ TRÌNH</div>
+        <div class="sidebar-title">Thiết kế hệ thống</div>
+        <div class="sidebar-progress">
+          <div class="sidebar-progress-bar"><span id="sidebarProgressFill"></span></div>
+          <span id="sidebarProgressText">0/10 bài</span>
+        </div>
+      </div>
+      <div class="sidebar-nav" id="sidebarNav"></div>
+      <div class="sidebar-foot">
+        <button class="sidebar-foot-btn" id="resetProgressBtn" type="button">
+          <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M4 10a6 6 0 1 0 1.8-4.3M4 3.5V7h3.5"/></svg>
+          Đặt lại tiến độ
+        </button>
+        <div class="sidebar-note">Chạy hoàn toàn trên máy bạn.<br>Tiến độ lưu trong trình duyệt.</div>
+      </div>
+    </aside>
+
+    <main class="view" id="view" tabindex="-1"></main>
+  </div>
+
+  <div class="search-modal" id="searchModal" hidden>
+    <div class="search-backdrop" data-close-search></div>
+    <div class="search-panel" role="dialog" aria-modal="true" aria-labelledby="searchTitle">
+      <div class="search-head">
+        <svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="9" cy="9" r="5.5"/><path d="m13.2 13.2 3.8 3.8"/></svg>
+        <input id="searchInput" type="search" placeholder="Tìm bài học, khái niệm, cheatsheet…" autocomplete="off" aria-labelledby="searchTitle">
+        <span id="searchTitle" class="sr-only">Tìm kiếm</span>
+        <kbd>ESC</kbd>
+      </div>
+      <div class="search-results" id="searchResults"></div>
+      <div class="search-foot">
+        <span><kbd>↑</kbd><kbd>↓</kbd> di chuyển</span>
+        <span><kbd>↵</kbd> mở</span>
+        <span><kbd>ESC</kbd> đóng</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <noscript>
+    <div class="noscript">ScaleLab cần JavaScript để chạy sơ đồ tương tác. Hãy bật JavaScript rồi tải lại trang.</div>
+  </noscript>
+
+  <script src="js/data.js"></script>
+  <script src="js/data2.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
