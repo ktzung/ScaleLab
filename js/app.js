@@ -110,7 +110,15 @@
     gate: "violet",
     shield: "green",
     test: "blue",
-    rollback: "coral"
+    rollback: "coral",
+    file: "yellow",
+    bulb: "yellow",
+    check: "green",
+    book: "blue",
+    star: "yellow",
+    flask: "violet",
+    arrow: "blue",
+    info: "violet"
   };
 
   const view = $("#view");
