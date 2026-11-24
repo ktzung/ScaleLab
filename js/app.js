@@ -33,6 +33,18 @@
     file: '<path d="M5 2.5h8a2 2 0 0 1 2 2v13H5a2 2 0 0 1-2-2v-11a2 2 0 0 1 2-2Zm3 4h4M8 10h4M8 13.5h2.5"/>',
     bulb: '<path d="M7.2 14.2h5.6M8 17h4M10 2.5a5 5 0 0 0-3 9v1.7h6V11.5a5 5 0 0 0-3-9Z"/>',
     check: '<path d="m4 10 4 4 8-8"/>',
+    code: '<path d="m7 5-4 5 4 5M13 5l4 5-4 5"/>',
+    commit: '<circle cx="10" cy="10" r="3"/><path d="M10 2v5M10 13v5"/>',
+    branch: '<circle cx="6" cy="5" r="2"/><circle cx="6" cy="15" r="2"/><circle cx="14" cy="8" r="2"/><path d="M6 7v6M8 5h2a2 2 0 0 1 2 2v1"/>',
+    merge: '<circle cx="6" cy="5" r="2"/><circle cx="6" cy="15" r="2"/><circle cx="14" cy="10" r="2"/><path d="M8 5h2a2 2 0 0 1 2 2v1M8 15h2a2 2 0 0 0 2-2v-1"/>',
+    build: '<path d="M4 16V8l6-4 6 4v8l-6 4-6-4Z"/><path d="M4 8l6 4 6-4M10 12v8"/>',
+    artifact: '<path d="M5 2.5h6l4 4v11H5z"/><path d="M11 2.5v4h4M8 11h4M8 14h4"/>',
+    deploy: '<path d="M10 2.5c2.6 1.8 4 4.3 4 7.2L10 14l-4-4.3c0-2.9 1.4-5.4 4-7.2Z"/><path d="M7.8 13.5 6 17l3.2-1M12.2 13.5 14 17l-3.2-1M10 8.5h.01"/>',
+    monitor: '<path d="M2.5 10h3.5l1.5-4 3 8 1.8-4h5.2"/>',
+    gate: '<rect x="4.5" y="9" width="11" height="8" rx="2"/><path d="M7 9V6.5a3 3 0 0 1 6 0V9M10 12.5v1.5"/>',
+    shield: '<path d="M10 2.5 16 5v5c0 3.5-2.4 6-6 7.5C7.4 16 5 13.5 5 10V5l5-2.5Z"/><path d="m7.5 10 1.8 1.8 3.4-3.4"/>',
+    test: '<rect x="3.5" y="3.5" width="13" height="13" rx="3"/><path d="m6.5 10 2.2 2.2 4.8-4.8"/>',
+    rollback: '<path d="M4 10a6 6 0 1 0 1.8-4.3M4 3.5V7h3.5"/>',
     arrow: '<path d="M4 10h12M11 5l5 5-5 5"/>',
     info: '<circle cx="10" cy="10" r="7"/><path d="M10 9v4.5M10 6.5h.01"/>'
   };
@@ -86,7 +98,19 @@
     gateway: "coral",
     router: "violet",
     store: "green",
-    presence: "violet"
+    presence: "violet",
+    code: "blue",
+    commit: "green",
+    branch: "violet",
+    merge: "mint",
+    build: "coral",
+    artifact: "yellow",
+    deploy: "coral",
+    monitor: "blue",
+    gate: "violet",
+    shield: "green",
+    test: "blue",
+    rollback: "coral"
   };
 
   const view = $("#view");
@@ -549,7 +573,7 @@
       },
       {
         title: "Luyện tập tình huống",
-        desc: "6 ca chẩn đoán nút thắt, chọn phương án và đọc lời giải thích.",
+        desc: `${SL.practice.length} ca tình huống: chẩn đoán nút thắt, Git và CI/CD.`,
         href: "#/practice",
         icon: "star",
         tone: "coral",
@@ -649,7 +673,7 @@
             </details>
             <details class="faq-item">
               <summary>Có thể thêm bài học mới không?</summary>
-              <p>Có. Dữ liệu bài học nằm trong <code>js/data.js</code> và <code>js/data2.js</code>. Thêm một object bài học vào module là sidebar, tìm kiếm và tiến độ tự cập nhật.</p>
+              <p>Có. Dữ liệu bài học nằm trong <code>js/data.js</code>, <code>js/data2.js</code> và <code>js/data3.js</code>. Thêm một object bài học vào module là sidebar, tìm kiếm và tiến độ tự cập nhật.</p>
             </details>
             <details class="faq-item">
               <summary>Dùng trên điện thoại hoặc máy chiếu được không?</summary>
@@ -1433,7 +1457,7 @@
           <div>
             <div class="eyebrow"><span></span>Luyện tập</div>
             <h1>Tình huống thực tế</h1>
-            <p>Sáu tình huống mô phỏng sự cố thường gặp. Chọn thay đổi có tác động lớn nhất trước khi xem lời giải thích.</p>
+            <p>${SL.practice.length} tình huống thực tế về nút thắt, Git và CI/CD. Chọn thay đổi có tác động lớn nhất trước khi xem lời giải thích.</p>
           </div>
           <div class="mode-head-right">
             <button class="btn btn-ghost" type="button" data-action="restart-practice">Làm lại</button>
@@ -1458,10 +1482,10 @@
       const correct = p.results.filter(Boolean).length;
       const pct = Math.round((correct / total) * 100);
       const message = pct >= 80
-        ? "Bạn đọc nút thắt rất tốt. Thử sang Design Lab để kiểm tra bằng mô phỏng."
+        ? "Bạn đọc tình huống rất tốt. Thử Design Lab hoặc mở lại bài tương ứng để đào sâu."
         : pct >= 50
           ? "Nền tảng đã vững. Xem lại các tình huống sai và chú ý chỉ số nào đang báo đỏ."
-          : "Hãy quay lại các bài về cache, mở rộng ngang và hàng đợi, rồi thử lại.";
+          : "Hãy mở lại các bài liên quan tới tình huống sai, rồi thử lại lượt luyện này.";
       wrap.innerHTML = `
         <div class="scenario-card practice-result">
           <div class="result-ring" style="--score:${pct}"><b>${pct}%</b></div>
@@ -1953,7 +1977,7 @@
           <div>
             <div class="eyebrow"><span></span>Cheatsheets</div>
             <h1>Tra nhanh khi thiết kế</h1>
-            <p>Công thức, con số tham khảo và máy tính nhỏ để ước lượng trước khi vẽ kiến trúc.</p>
+            <p>Số liệu tham khảo, mẫu thiết kế và quy trình giao hàng để tra nhanh trước khi vẽ kiến trúc.</p>
           </div>
           <div class="mode-head-right">
             <a class="btn btn-ghost" href="#/learn">Vào bài học</a>

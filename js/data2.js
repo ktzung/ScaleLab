@@ -601,7 +601,7 @@
           edges: "all",
           metrics: { connections: "50k", delivery: "99,9%", order: "Theo hội thoại", p95: "95 ms" },
           changes: ["Tin bền vững trước fan-out", "Đo delivery và duplicate rate"],
-          note: "Bạn đã đi hết 10 bài. Hãy thử Design Lab để tự ghép pipeline và nhìn nút thắt xuất hiện."
+          note: "Bạn đã đi hết phần nền tảng. Hãy thử Design Lab để tự ghép pipeline và nhìn nút thắt xuất hiện, rồi sang module Giao hàng để đưa thay đổi ra production."
         }
       ]
     }
